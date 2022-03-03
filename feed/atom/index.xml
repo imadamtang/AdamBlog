@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.imadamtang.cn/</id><title>一博客</title><updated>2022-03-03T01:45:00.105050+08:06</updated><author><name>Adam</name><email>imadmtang@gmail.com</email></author><link href="https://blog.imadamtang.cn/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>$../Theme/assets/AdamBlog.png</logo><subtitle>巧伪不如拙诚</subtitle><entry><id>https://blog.imadamtang.cn/archives/typography/</id><title>Typography</title><updated>2022-03-02T17:45:00.105089+00:00</updated><author><name>AlanDecode</name><email>imadmtang@gmail.com</email><uri>https://blog.imadamtang.cn</uri></author><content>&lt;div class="notice"&gt;This is an sample article. Typography matters in Maverick.&lt;/div&gt;&lt;!--more--&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.imadamtang.cn/</id><title>一博客</title><updated>2022-03-03T08:22:10.729671+08:06</updated><author><name>Adam</name><email>imadmtang@gmail.com</email></author><link href="https://blog.imadamtang.cn/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>$../Theme/assets/AdamBlog.png</logo><subtitle>巧伪不如拙诚</subtitle><entry><id>https://blog.imadamtang.cn/archives/my-first-awesome-page/</id><title>Hello World</title><updated>2022-03-03T00:22:10.729745+00:00</updated><author><name>Adam</name><email>imadmtang@gmail.com</email><uri>https://blog.imadamtang.cn</uri></author><content>&lt;p&gt;Hello World！&lt;/p&gt;&lt;p&gt;[pho]&lt;/p&gt;</content><link href="https://blog.imadamtang.cn/archives/my-first-awesome-page/" rel="alternate"/><published>2022-02-22T22:22:22+08:06</published></entry><entry><id>https://blog.imadamtang.cn/archives/typography/</id><title>Typography</title><updated>2022-03-03T00:22:10.729707+00:00</updated><author><name>AlanDecode</name><email>imadmtang@gmail.com</email><uri>https://blog.imadamtang.cn</uri></author><content>&lt;div class="notice"&gt;This is an sample article. Typography matters in Maverick.&lt;/div&gt;&lt;!--more--&gt;
 &lt;h2&gt;L2 Heading&lt;/h2&gt;
 &lt;h3&gt;L3 Heading&lt;/h3&gt;
 &lt;h4&gt;L4 Heading&lt;/h4&gt;
@@ -66,10 +66,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2&gt;Link Card&lt;/h2&gt;
-&lt;div class="links"&gt;
-&lt;a style="display:block" target="_blank" href="https://www.imalan.cn" class="board-item"&gt;             &lt;div class="board-thumb"&gt;&lt;img src="https://secure.gravatar.com/avatar/1741a6eef5c824899e347e4afcbaa75d?s=200&amp;r=G&amp;d="&gt;&lt;/div&gt;             &lt;div class="board-title"&gt;AlanDecode&lt;/div&gt;&lt;/a&gt;
-&lt;/div&gt;&lt;section class="footnotes"&gt;
+&lt;section class="footnotes"&gt;
 &lt;ol&gt;
 &lt;li id="fn-1"&gt;&lt;p&gt;Home page for AlanDecode&lt;a href="#fnref-1" class="footnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
