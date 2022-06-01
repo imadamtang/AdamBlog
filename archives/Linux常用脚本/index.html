@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,blog" />
+    <meta name="generator" content="Maverick 1.2.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="一博客 &raquo; RSS 2.0" href="https://blog.imadamtang.cn/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="一博客 &raquo; ATOM 1.0" href="https://blog.imadamtang.cn/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/galileo-8d8763e752.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/48c3998339f65dc6d799fe211273fbb5.json"
+        }
+    </script>
+    
+<title>Linux常用脚本 - 一博客</title>
+<meta name="author" content="Adam" />
+<meta name="description" content="Linux常用脚本" />
+<meta property="og:title" content="Linux常用脚本 - 一博客" />
+<meta property="og:description" content="Linux常用脚本" />
+<meta property="og:site_name" content="一博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.imadamtang.cn/archives/Linux%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2020-07-13T20:19:00+08.00" />
+<meta name="twitter:title" content="Linux常用脚本 - 一博客" />
+<meta name="twitter:description" content="Linux常用脚本" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="https://blog.imadamtang.cn/">一博客</a></h1>
+                        <p>巧伪不如拙诚</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="https://blog.imadamtang.cn/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="https://blog.imadamtang.cn/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="https://blog.imadamtang.cn/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">Linux常用脚本</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>Adam</span>
+                <time>
+                    2020-07-13
+                </time>
+                
+                in <a no-style class="category" href="https://blog.imadamtang.cn/category/%E8%AE%B0%E5%BD%95/">
+                    记录
+                </a>
+                
+                
+                <span class="leancloud_visitors" 
+                    id="/archives/Linux%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC/" 
+                    data-flag-title="Linux常用脚本"> · <i class="leancloud-visitors-count"></i> Views</span>
+                
+            </span>
+            <div class="ga-content_body">
+                <h1>Linux常用脚本</h1>
+<p>Linux的一些常用脚本和经验</p><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1"># 脚本放入到/usr/local/bin</span>
+<span class="c1"># chmod 755 check_server.sh</span>
+<span class="c1"># crontab 中添加</span>
+<span class="nb">source</span> /etc/bashrc
+
+<span class="c1">#------监控阈值</span>
+<span class="nv">DISK_space_warn</span><span class="o">=</span><span class="m">90</span>
+<span class="nv">CPU_load_warn</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">CPU_use_warn</span><span class="o">=</span><span class="m">50</span>
+<span class="nv">MEM_use_warn</span><span class="o">=</span><span class="m">95</span>
+<span class="c1">#SWAP_use_warn=50</span>
+<span class="nv">Net_SYN_count_warn</span><span class="o">=</span><span class="m">200</span>
+
+<span class="c1">#判断参数</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -ne <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">hint_msg</span><span class="o">=</span><span class="s2">&quot;usage: </span><span class="nv">$0</span><span class="s2"> Monitoring_type,Monitoring_type phone,phone,phone&quot;</span>
+    <span class="nb">echo</span> <span class="nv">$hint_msg</span>
+    <span class="nb">echo</span> <span class="s2">&quot;sh </span><span class="nv">$0</span><span class="s2"> disk,cpu,mem,net,io,alive&quot;</span>
+    <span class="nb">exit</span> -1 
+<span class="k">fi</span>
+
+<span class="c1">#------监控项</span>
+<span class="nv">Monitoring_type_tmp</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">Monitoring_type</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$Monitoring_type_tmp</span> <span class="p">|</span> sed -e <span class="s1">&#39;s/,/ /g&#39;</span><span class="k">)</span> 
+
+<span class="nv">now</span><span class="o">=</span><span class="sb">`</span>date -u -d<span class="s2">&quot;+8 hour&quot;</span> +<span class="s1">&#39;%Y-%m-%d %H:%M:%S&#39;</span><span class="sb">`</span>
+
+<span class="c1">#------机器操作系统</span>
+<span class="nv">OS_version</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="k">if</span>  grep -q <span class="s1">&#39;CentOS release 6&#39;</span> /etc/redhat-release <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">OS_version</span><span class="o">=</span><span class="s1">&#39;CentOS6&#39;</span>
+<span class="k">else</span> 
+    <span class="nv">OS_version</span><span class="o">=</span><span class="s1">&#39;CentOS7&#39;</span>
+<span class="k">fi</span>
+
+<span class="c1">#------ip地址</span>
+<span class="nv">localip</span><span class="o">=</span><span class="sb">`</span>hostname -I <span class="p">|</span> tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> grep -E <span class="s1">&#39;(^10\.|^172\.(1[6-9]|2[0-9]|31)|^192\.168)&#39;</span> <span class="p">|</span> head -n <span class="m">1</span><span class="sb">`</span>
+
+send_warning<span class="o">()</span>
+<span class="o">{</span>
+    发短信的函数
+    发送下面的msg变量
+<span class="o">}</span>
+
+
+<span class="c1">#------监控CPU相关信息</span>
+<span class="k">function</span> sub_cpu<span class="o">(){</span>
+    <span class="nv">cpu_num</span><span class="o">=</span><span class="sb">`</span>grep -c <span class="s1">&#39;model name&#39;</span> /proc/cpuinfo<span class="sb">`</span>
+    
+    <span class="c1">#------cpu 负载 15 minutes</span>
+    <span class="nv">load_15</span><span class="o">=</span><span class="sb">`</span>cat /proc/loadavg  <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+    <span class="nv">average_load</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;scale=2;a=</span><span class="nv">$load_15</span><span class="s2">/</span><span class="nv">$cpu_num</span><span class="s2">;if(length(a)==scale(a)) print 0;print a&quot;</span> <span class="p">|</span> bc<span class="sb">`</span>
+    <span class="nv">average_int</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$average_load</span> <span class="p">|</span> cut -f <span class="m">1</span> -d <span class="s2">&quot;.&quot;</span><span class="sb">`</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">average_int</span><span class="si">}</span><span class="s2">&quot;</span> -ge <span class="s2">&quot;</span><span class="si">${</span><span class="nv">CPU_load_warn</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    	<span class="nv">msg</span><span class="o">=</span><span class="si">${</span><span class="nv">HOSTNAME</span><span class="si">}</span><span class="s2">&quot; &quot;</span><span class="si">${</span><span class="nv">localip</span><span class="si">}</span><span class="s2">&quot; System load average of 15 minutes is &quot;</span><span class="si">${</span><span class="nv">average_load</span><span class="si">}</span><span class="s2">&quot; more than &quot;</span><span class="si">${</span><span class="nv">CPU_load_warn</span><span class="si">}</span> 
+    	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">now</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>  &gt;&gt; log
+    	send_warning
+    <span class="k">fi</span>
+    
+    <span class="c1">#------cpu 使用率</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="si">${</span><span class="nv">OS_version</span><span class="si">}</span> <span class="o">==</span> <span class="s1">&#39;CentOS6&#39;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    	<span class="nv">cpu_idle</span><span class="o">=</span><span class="sb">`</span>top -b -n <span class="m">1</span> <span class="p">|</span> grep Cpu <span class="p">|</span> awk <span class="s1">&#39;{print $5}&#39;</span> <span class="p">|</span> cut -f <span class="m">1</span> -d <span class="s2">&quot;.&quot;</span><span class="sb">`</span>
+    <span class="k">else</span>
+    	<span class="nv">cpu_idle</span><span class="o">=</span><span class="sb">`</span>top -b -n <span class="m">1</span> <span class="p">|</span> grep Cpu <span class="p">|</span> awk <span class="s1">&#39;{print $8}&#39;</span> <span class="p">|</span> cut -f <span class="m">1</span> -d <span class="s2">&quot;.&quot;</span><span class="sb">`</span>
+    <span class="k">fi</span>
+    <span class="nv">CPU_use</span><span class="o">=</span><span class="sb">`</span>expr <span class="m">100</span> - <span class="nv">$cpu_idle</span><span class="sb">`</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">CPU_use</span><span class="si">}</span><span class="s2">&quot;</span> -ge <span class="s2">&quot;</span><span class="si">${</span><span class="nv">CPU_use_warn</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    	<span class="nv">msg</span><span class="o">=</span><span class="si">${</span><span class="nv">HOSTNAME</span><span class="si">}</span><span class="s2">&quot; &quot;</span><span class="si">${</span><span class="nv">localip</span><span class="si">}</span><span class="s2">&quot; CPU utilization is &quot;</span><span class="si">${</span><span class="nv">CPU_use</span><span class="si">}</span><span class="s2">&quot;% more than &quot;</span><span class="si">${</span><span class="nv">CPU_use_warn</span><span class="si">}</span><span class="s2">&quot;%&quot;</span> 
+    	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">now</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>  &gt;&gt; log
+    	send_warning		
+    <span class="k">fi</span>	
+<span class="o">}</span>
+
+<span class="c1">#------监控内存</span>
+<span class="k">function</span> sub_mem<span class="o">(){</span>
+    <span class="nv">MEM_use</span><span class="o">=</span><span class="sb">`</span>free <span class="p">|</span> grep <span class="s2">&quot;Mem&quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{printf(&quot;%d&quot;, $3*100/$2)}&#39;</span><span class="sb">`</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$MEM_use</span> -ge <span class="nv">$MEM_use_warn</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    	<span class="nv">msg</span><span class="o">=</span><span class="si">${</span><span class="nv">HOSTNAME</span><span class="si">}</span><span class="s2">&quot; &quot;</span><span class="si">${</span><span class="nv">localip</span><span class="si">}</span><span class="s2">&quot; Mem_used:&quot;</span><span class="si">${</span><span class="nv">MEM_use</span><span class="si">}</span><span class="s2">&quot;% more than &quot;</span><span class="si">${</span><span class="nv">MEM_use_warn</span><span class="si">}</span><span class="s2">&quot;%&quot;</span>
+    	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">now</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>  &gt;&gt; log
+    	send_warning
+    <span class="k">fi</span>
+    <span class="c1">#SWAP有很多环境为0 例如在AWS云，腾讯云上</span>
+    <span class="c1">#SWAP_use=`free | grep &quot;Swap&quot; | awk &#39;{printf(&quot;%d&quot;, $3*100/$2)}&#39;`</span>
+    <span class="c1">#if [ $SWAP_use -ge $SWAP_use_warn ];then</span>
+    <span class="c1">#</span>
+    <span class="c1">#	send_warning</span>
+    <span class="c1">#fi </span>
+<span class="o">}</span>
+
+
+<span class="c1">#------监控硬盘空间</span>
+<span class="k">function</span> sub_disk<span class="o">(){</span>
+    <span class="c1">#[注意这里用df -P]</span>
+    <span class="k">for</span> DISK_space <span class="k">in</span> <span class="sb">`</span>df -P <span class="p">|</span> grep /dev <span class="p">|</span> grep -v -E <span class="s1">&#39;(tmp|boot)&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $5}&#39;</span> <span class="p">|</span> cut -f <span class="m">1</span> -d <span class="s2">&quot;%&quot;</span> <span class="sb">`</span> 
+    <span class="k">do</span>
+    	<span class="k">if</span> <span class="o">[</span> <span class="nv">$DISK_space</span> -ge <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DISK_space_warn</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    		<span class="nv">msg</span><span class="o">=</span><span class="si">${</span><span class="nv">HOSTNAME</span><span class="si">}</span><span class="s2">&quot; &quot;</span><span class="si">${</span><span class="nv">localip</span><span class="si">}</span><span class="s2">&quot; Hard disk space :&quot;</span><span class="si">${</span><span class="nv">DISK_space</span><span class="si">}</span><span class="s2">&quot;% more than &quot;</span><span class="si">${</span><span class="nv">DISK_space_warn</span><span class="si">}</span><span class="s2">&quot;%&quot;</span>
+    		<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">now</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>  &gt;&gt; log
+    		send_warning
+    	<span class="k">fi</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c1">#------监控网络相关</span>
+<span class="k">function</span> sub_net<span class="o">(){</span>
+
+    <span class="c1">#------syn 半连接数</span>
+    <span class="nv">Net_SYN_count</span><span class="o">=</span><span class="sb">`</span>ss -an <span class="p">|</span> grep -ic syn<span class="sb">`</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">Net_SYN_count</span><span class="si">}</span><span class="s2">&quot;</span> -ge <span class="s2">&quot;</span><span class="si">${</span><span class="nv">Net_SYN_count_warn</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    	<span class="nv">msg</span><span class="o">=</span><span class="si">${</span><span class="nv">HOSTNAME</span><span class="si">}</span><span class="s2">&quot; &quot;</span><span class="si">${</span><span class="nv">localip</span><span class="si">}</span><span class="s2">&quot; Net SYN count :&quot;</span><span class="si">${</span><span class="nv">Net_SYN_count</span><span class="si">}</span><span class="s2">&quot; more than &quot;</span><span class="si">${</span><span class="nv">Net_SYN_count_warn</span><span class="si">}</span>
+    	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">now</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>  &gt;&gt; log
+    	send_warning
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c1">#------监控项</span>
+<span class="k">for</span> <span class="nb">type</span> <span class="k">in</span> <span class="nv">$Monitoring_type</span>
+<span class="k">do</span>
+    <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">type</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s1">&#39;disk&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> sub_disk
+    <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">type</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s1">&#39;cpu&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> sub_cpu
+    <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">type</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s1">&#39;mem&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> sub_mem
+    <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">type</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s1">&#39;net&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> sub_net
+    <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">type</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s1">&#39;io&#39;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> sub_io
+    <span class="c1">#[ &quot;${type}&quot; == &#39;alive&#39; ] &amp;&amp; sub_alive</span>
+<span class="k">done</span> 
+
+
+<span class="c1">#判断端口是否通 也是判断是否alive的</span>
+<span class="c1">#!/bin/bash</span>
+<span class="c1">#Alive=`echo -e &quot;\n&quot; | telnet  192.168.1.30 22 | grep Connected | wc -l`</span>
+<span class="c1">#if [ &quot;$Alive&quot; == 1 ];then</span>
+<span class="c1">#        echo &quot;0&quot;    #如果JG等于1，端口为通，输出0</span>
+<span class="c1">#else </span>
+<span class="c1">#        echo &quot;1&quot;    #如果JG等于0，端口不通，输出1</span>
+<span class="c1">#fi</span>
+</pre></div>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="https://blog.imadamtang.cn/archives/Selenium%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Selenium基本操作</a>
+        <p class="yue">Selenium 基本操作</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="https://blog.imadamtang.cn/archives/Ceph%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%8F%8D%E5%A4%8D%E5%85%A5%E9%97%A8/">Ceph从入门到反复入门</a>
+        <p class="yue">Ceph从入门到反复入门</p>
+    </div>
+
+</section>
+
+
+    
+        <script>
+            var initValine = function () {
+                new Valine({"enable": true, "el": "#vcomments", "appId": "whpJbIrUvboS1qOUGbAQLYMO-gzGzoHsz", "appKey": "XJmv8dJpt1RJltuKYpw5Io9P", "visitor": true, "recordIP": true});
+            }
+        </script>
+        <script defer src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js' onload="initValine()"></script>
+        <div id="vcomments"></div>
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">一博客</span>
+                    </section>
+                    <section>
+<!--                        <p class="copyright">-->
+<!--                            <span>Copyright © 2022 Adam</span>-->
+<!--&lt;!&ndash;                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>&ndash;&gt;-->
+<!--                        </p>-->
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/imadamtang" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2022-02-22T22:22+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/galileo-7c8cea54ab.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

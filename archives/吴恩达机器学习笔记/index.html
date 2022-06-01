@@ -1,0 +1,631 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,blog" />
+    <meta name="generator" content="Maverick 1.2.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="一博客 &raquo; RSS 2.0" href="https://blog.imadamtang.cn/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="一博客 &raquo; ATOM 1.0" href="https://blog.imadamtang.cn/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/galileo-8d8763e752.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/48c3998339f65dc6d799fe211273fbb5.json"
+        }
+    </script>
+    
+<title>吴恩达机器学习笔记 - 一博客</title>
+<meta name="author" content="Adam" />
+<meta name="description" content="吴恩达机器学习笔记" />
+<meta property="og:title" content="吴恩达机器学习笔记 - 一博客" />
+<meta property="og:description" content="吴恩达机器学习笔记" />
+<meta property="og:site_name" content="一博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.imadamtang.cn/archives/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-07-12T22:32:00+08.00" />
+<meta name="twitter:title" content="吴恩达机器学习笔记 - 一博客" />
+<meta name="twitter:description" content="吴恩达机器学习笔记" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="https://blog.imadamtang.cn/">一博客</a></h1>
+                        <p>巧伪不如拙诚</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="https://blog.imadamtang.cn/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="https://blog.imadamtang.cn/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="https://blog.imadamtang.cn/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">吴恩达机器学习笔记</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>Adam</span>
+                <time>
+                    2021-07-12
+                </time>
+                
+                in <a no-style class="category" href="https://blog.imadamtang.cn/category/%E5%AD%A6%E4%B9%A0/">
+                    学习
+                </a>
+                
+                
+                <span class="leancloud_visitors" 
+                    id="/archives/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" 
+                    data-flag-title="吴恩达机器学习笔记"> · <i class="leancloud-visitors-count"></i> Views</span>
+                
+            </span>
+            <div class="ga-content_body">
+                <h1>吴恩达机器学习笔记</h1>
+<p>[toc]</p><h2>1 概述</h2>
+<h3>1.1 定义</h3>
+<p><em>Arthur Samuel</em></p><p>“Field of study that gives computers the ability to learn without being explicitly programmed.”</p><blockquote>
+<p>机器学习：在没有进行特定编程的情况下给予计算机学习能力的领域。</p></blockquote>
+<p><em>Tom Mitchell</em></p><p>*“A computer program is said to <em>learn</em> from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.”*</p><blockquote>
+<p>机器学习：机器学习是为了执行<strong>任务T</strong>，从<strong>经验E</strong>中学习，用<strong>表现P</strong>来评判它完成任务的性能，并从中提升。</p></blockquote>
+<p><strong>举例</strong></p><ul>
+<li>过滤垃圾邮件</li>
+</ul>
+<p>用Tom的定义来说，T=正确分类垃圾邮件和普通邮件，E=查看你对邮件的人工标记（是否是垃圾邮件），P=正确分类的数量或概率。</p><h3>1.2 学习算法</h3>
+<h4>1.2.1 监督学习</h4>
+<p>监督学习：提供“正确答案”的数据集，来<strong>教</strong>计算机如何学习</p><h5>1.2.1.1 回归问题</h5>
+<p>回归问题：预测出连续值属性的类型</p><p><strong>举例</strong></p><ul>
+<li>房价预测</li>
+</ul>
+<p>根据已知的<strong>面积-房价</strong>数据，得到一条较为拟合的函数（图中的紫色非线性函数，蓝色线性函数），通过回归预测出X面积房子的房价Y。</p><figure style="flex: 88.65131578947368" ><img loading="lazy" width="1078" height="608" src="https://s2.ax1x.com/2020/01/02/lt0lw9.png" /><figcaption>房价预测</figcaption></figure><h5>1.2.1.2 分类问题</h5>
+<p>分类问题：预测出离散值属性的类型</p><p><strong>举例</strong></p><ul>
+<li>肿瘤预测</li>
+</ul>
+<p>根据已知的<strong>年龄;肿瘤大小-良性/恶性</strong>数据，得到一条拟合直线来区分良性和恶性，从而通过年龄和肿瘤大小来判断肿瘤是良性或恶性的（蓝圈良性，红叉恶性）。</p><figure style="flex: 77.33812949640287" ><img loading="lazy" width="645" height="417" src="https://s2.ax1x.com/2020/01/02/lt08F1.png" /><figcaption>肿瘤预测</figcaption></figure><p>通过例子，我们了解到，我们需要通过事物的许多属性（房子面积、肿瘤大小和患者年龄等）来得到我们需要的结果（房价、良性或恶性）。属性是影响结果的一些关键性因素，而在实际中，我们影响事物的属性非常多，可计算机存储空间有限，不可能存放无限多的属性，所以我们要用到 <strong>支持向量机</strong> 来解决这个问题。支持向量机通过一个简洁的数学技巧，允许计算基础护理无限多的属性。</p><h4>1.2.2 非监督学习</h4>
+<p>非监督学习：没有正确答案的数据集，让计算机从中自主找到某种蕴含的结构</p><h5>1.2.2.1 聚类算法</h5>
+<p>聚类算法：找出数据集中“蕴含”的分类</p><p><strong>举例</strong></p><ul>
+<li>肿瘤分类</li>
+</ul>
+<figure style="flex: 57.35567970204842" ><img loading="lazy" width="616" height="537" src="https://s2.ax1x.com/2020/01/02/lt0GJx.png" /><figcaption>肿瘤分类</figcaption></figure><ul>
+<li>新闻分类</li>
+</ul>
+<figure style="flex: 88.93728222996516" ><img loading="lazy" width="1021" height="574" src="https://s2.ax1x.com/2020/01/02/lt01oR.png" /><figcaption>新闻分类</figcaption></figure><p><strong>鸡尾酒会算法</strong></p><p>通过Microphone #1和Microphone #2的声音，分离仅有出Speaker #1和Speaker #2的声音</p><figure style="flex: 62.278978388998034" ><img loading="lazy" width="634" height="509" src="https://s2.ax1x.com/2020/01/02/ltscNj.png" /><figcaption>鸡尾酒会算法</figcaption></figure><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">W</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">v</span><span class="p">]=</span><span class="nb">svd</span><span class="p">((</span><span class="nb">repmat</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.*</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="nb">size</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="o">.*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">&#39;</span><span class="p">);</span><span class="w"></span>
+#<span class="w"> </span><span class="nb">svd</span><span class="p">:</span>奇异值分解<span class="w"></span>
+</pre></div>
+<hr />
+<h2>2 单特征线性回归</h2>
+<h3>2.1 定义</h3>
+<p>m=训练集样本数量</p><p>x=输入变量/特征</p><p>y=输出变量</p><p>h=映射函数(prediction)</p><p>轮廓图(contour plot)</p><figure style="flex: 89.97975708502024" ><img loading="lazy" width="889" height="494" src="https://s2.ax1x.com/2020/01/07/l6dFgg.png" /><figcaption>轮廓图</figcaption></figure><ol>
+<li>相同颜色的每一圈表示$J(\theta_0,\theta_1)$值相等点集合</li>
+<li>$J(\theta_0,\theta_1)$最小值的点在圈最小的点集中</li>
+</ol>
+<h3>2.2 假设函数</h3>
+<p>$h_θ(x)=θ₀+θ₁x$</p><figure style="flex: 92.63636363636364" ><img loading="lazy" width="1019" height="550" src="https://s2.ax1x.com/2020/01/07/l6lXo4.png" /><figcaption>线性回归</figcaption></figure><p>损失函数选择思路：选择一个函数$J(θ_0,θ_1)$，使得样本$y$与$h_θ(x)$之差最小。</p><p><strong>假设函数和损失函数的区别：</strong></p><p>假设函数是输入值和输出值的函数，是我们解决问题最终需要得到的函数，我们应该尽量使其与样本数据拟合。</p><p>损失函数是为了求解最优假设函数而设的函数，其目的是得到假设函数中的各个常量值。损失函数衡量了假设函数与实际问题之间的接近程度。</p><h3>2.3 损失函数</h3>
+<h4>2.3.1 平方差函数</h4>
+<p>平方差函数是基于：“离差平方和”，它反映了x与其数学期望Ex的偏离程度。</p><p><strong>Prediction:</strong> $h_\theta(x)=\theta_0+\theta_1x$</p><p><strong>Parameters:</strong> $\theta_0,\theta_1$</p><p>**Cost Function: **$J(\theta_0,\theta_1)=\frac{1}{2m}  \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})^2$</p><p><strong>Goal:</strong> $J(\theta_0,\theta_1)min$</p><blockquote>
+<p>问：此处本来乘以1/m即可，为什么要乘以1/2m呢？</p><p>答：因为我们需要求$J_{min}$，利用梯度下降法对J求导时，如果是1/2m，求导结果为：，$\frac{∂J}{∂ {\theta}<em>i}=\frac{1}{m} \sum ^m _{i=1} (h</em>\theta(x^{(i)})-y^{(i)}) \frac{∂h_{\theta}(x^{(i)})}{∂\theta}$正好求导时平方的2可以消去，简化了计算。</p><p>这里无论除以2m还是m，函数J最小值的θ都是相同的。</p></blockquote>
+<figure style="flex: 88.98601398601399" ><img loading="lazy" width="1018" height="572" src="https://s2.ax1x.com/2020/01/07/l6YfoT.png" /><figcaption>平方差函数</figcaption></figure><h3>2.4 损失函数最小化</h3>
+<h4>2.4.1 梯度下降法</h4>
+<p>梯度下降法的计算过程就是沿梯度下降/上升的方向求解极小值/极大值（局部/全局最优解）。</p><p>用于线性回归的损失函数都是“弓型”的，即凸函数，不存在局部最优解，一定存在并且仅有一个全局最优解。</p><p><strong>求解步骤：</strong></p><ol>
+<li>选择一个损失函数$J(\theta_0,\theta_1 )$</li>
+<li>初始化：$(\theta_0,\theta_1)=(0,0)$</li>
+<li>选择一个学习速率$α$ (即梯度下降的速度)</li>
+<li>开始迭代，令$\theta_j:=\theta_j-α \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$</li>
+<li>检查$\theta_j$是否趋于收敛（$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) \to 0$ 或 $\theta_j \to \theta_{j-1}$），若收敛则得到$(\theta_0,\theta_1)$，反之重复步骤3</li>
+</ol>
+<figure style="flex: 88.96353166986565" ><img loading="lazy" width="927" height="521" src="https://s2.ax1x.com/2020/01/07/l6DnL4.png" /><figcaption>梯度下降求解</figcaption></figure><p><strong>关于初始值：</strong></p><ol>
+<li>若损失函数存在多个局部最优解，则从不同的初始值进行梯度下降，可能得到不同的局部最优解。</li>
+</ol>
+<figure style="flex: 98.59154929577464" ><img loading="lazy" width="560" height="284" src="https://s2.ax1x.com/2020/01/07/l6yc6K.png" /><figcaption>局部最优解</figcaption></figure><p><strong>关于偏导：</strong></p><ol>
+<li>$\theta_0:=\theta_0-α \frac{1}{m} \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)}) $</li>
+<li>$\theta_1:=\theta_1-α \frac{1}{m} \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})\cdot x^{(i)}$</li>
+</ol>
+<p><strong>关于学习速率$α$ ：</strong></p><ol>
+<li>$α$如果过大，可能导致无法收敛；过小，可能导致求解速度太慢。</li>
+<li>$α$不需要在循环中改变大小的原因：因为越接近min，导数越接近0，所以导×$α$也会趋于0，故梯度下降算法会自动采取更小的下降步法。</li>
+</ol>
+<figure style="flex: 92.41164241164242" ><img loading="lazy" width="889" height="481" src="https://s2.ax1x.com/2020/01/07/l6gIh9.png" /><figcaption>梯度下降步法自动减小</figcaption></figure><p><strong>梯度下降的三种形式：</strong></p><p>该三种形式的损失函数不同</p><ul>
+<li>批量梯度下降（Batch Gradient Descent，BGD）</li>
+</ul>
+<p>$$J(\theta_0,\theta_1)=\frac{1}{2m}  \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})^2$$</p>
+
+<pre><code>repeat{
+    θj:=θj−α1m∑mi=1(hθ(x(i))−y(i))x(i)j
+    (for j =0,1)
+}
+</code></pre>
+<ul>
+<li>随机梯度下降（Stochastic Gradient Descent，SGD）</li>
+</ul>
+<p>$$J^{(i)}(\theta_0,\theta_1)=\frac{1}{2} (h_θ(x^{(i)})-y^{(i)})^2$$</p>
+
+<pre><code>repeat{
+    for i=1,...,m{
+    	θj:=θj−α(hθ(x(i))−y(i))x(i)j
+    	(for j =0,1)
+    }
+}
+</code></pre>
+<ul>
+<li>小批量梯度下降（Mini-Batch Gradient Descent, MBGD）</li>
+</ul>
+<p>$$J(\theta_0,\theta_1)=\frac{1}{2m}  \sum ^k _{i=1} (h_θ(x^{(i)})-y^{(i)})^2 ,k\in(0,m)$$</p>
+
+<pre><code>repeat{
+    for i=1,11,21,31,...,991{
+    	θj:=θj−α110∑(i+9)k=i(hθ(x(k))−y(k))x(k)j
+    	(for j =0,1)
+    }
+}
+</code></pre>
+<p>参考：</p><p><a href="https://www.cnblogs.com/lliuye/p/9451903.html">三种梯度下降形式的介绍</a></p><p><a href="https://www.jianshu.com/p/c7e642877b0e">梯度下降理解</a></p><h3>2.5 练习</h3>
+<ol>
+<li>根据分子中碳含量和燃烧释放能量的训练集，构建一个线性回归函数</li>
+</ol>
+<figure style="flex: 66.39344262295081" ><img loading="lazy" width="1053" height="793" src="https://s2.ax1x.com/2020/01/07/lcyME4.png" /><figcaption>题目</figcaption></figure><p><strong>问题解决思路</strong></p><ol>
+<li>根据条件划出点集图，点集分布符合线性回归问题，故<strong>确认该问题类型</strong></li>
+<li>线性回归问题<strong>构建假设函数</strong>：$h_\theta(x)=\theta_0+\theta_1*x$</li>
+<li>明确所需求参为 $\theta_0,\theta_1$ ，<strong>构建损失函数</strong>，此处采用平方差函数：$J(\theta_0,\theta_1)=\frac{1}{2m}  \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})^2$</li>
+<li><strong>明确最小化损失函数方法</strong>，此处采用批量梯度下降法：<ol>
+<li>初始化：$(\theta_0,\theta_1)=(0,0)$</li>
+<li>选择一个学习速率$α$ （常以0.001开始递增尝试）</li>
+<li>选择一个迭代次数iteraNum（常以1500开始）</li>
+<li>迭代过程中令$\theta_j:=\theta_j-α \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$</li>
+</ol>
+</li>
+</ol>
+<p>Octave实现代码如下：</p><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s">&#39;trainingset.txt&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%定义梯度下降算法</span><span class="w"></span>
+<span class="k">function</span><span class="w"> </span>theta<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">gradientDescent</span><span class="p">(</span>X, y, alpha, iteraNum<span class="p">)</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">iteraNum</span><span class="p">;</span><span class="w"></span>
+<span class="n">dist</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">alpha</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="p">);</span><span class="w"></span>
+<span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">alpha</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">dist</span><span class="o">.*</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c">%默认学习速率为0.01 迭代次数为5000次</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">gradientDescent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;xr&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">);</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Training Data&#39;</span><span class="p">,</span><span class="s">&#39;Linear Regression&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Number of hydrocarbons in molecule&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Heat release when burned(kJ/mol)&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%theta = [-569,60; -530,91]</span><span class="w"></span>
+</pre></div>
+<p>训练后得到的回归函数为 $h_\theta(x)=-569.6 - 530.9*x$ :</p><figure style="flex: 53.28185328185328" ><img loading="lazy" width="552" height="518" src="https://s2.ax1x.com/2020/01/07/lcgQUg.png" /><figcaption>效果图</figcaption></figure><p><strong>矩阵在该算法中的应用：</strong></p><ol>
+<li>对于训练集$(x_0,x_1,x_2,...,x_n,y)$，将$(x_0,x_1,x_2,...,x_n)$作为矩阵$X$，$(y)$作为矩阵(向量) $y$</li>
+<li>对损失函数的偏导$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$ 包含 $\sum ^m <em>{i=1} (h_θ(x^{(i)})-y^{(i)})$ ，为保证<strong>同时更新</strong>的要求，应先用矩阵乘法表示为：$dist=h</em>\theta(x^{(i)})-y^{(i)}= \theta_0 + X\cdot\theta_1 - y$</li>
+<li>$\theta_1= \theta_1 - α<em>(1/m)</em>sum(dist)$</li>
+<li>$\theta_2= \theta_2 - α<em>(1/m)</em>sum(dist.<em>X)$ ，因为$J(\theta_1,\theta_2)$的两个偏导不同，对$\theta_2$的偏导需要再乘以$x$，故此处需要采用$dist.</em>X$，其中的“ $.<em>$ ”是指同型矩阵$a_{ij}</em>b_{ij}$</li>
+</ol>
+<hr />
+<h2>3 多特征线性回归</h2>
+<h3>3.1 定义</h3>
+<p>$m$=样本数量</p><p>$n$ = 特征数量</p><p>$x^{(i)}$=第i个样本</p><p>$x^{(i)}_j$=第i个样本的第j个特征</p><h3>3.2 假设函数</h3>
+<p>$$h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\cdots+\theta_nx_n $$</p>
+<ol>
+<li>为了方便，令 $x_0=1$，即 $x^{(i)}_0=1$</li>
+<li>令 $x= \begin{bmatrix} x_0\x_1\x_2\\vdots\x_n\end{bmatrix} $ ， $\theta=\begin{bmatrix}\theta_0\\theta_1\\theta_2\\vdots\\theta_n\end{bmatrix}$ ，则 $h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\cdots+\theta_nx_n=\theta^Tx$</li>
+</ol>
+<p><strong>Code</strong></p><p>依据公式：$h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\cdots+\theta_nx_n=\theta^Tx$</p><figure style="flex: 187.1345029239766" ><img loading="lazy" width="640" height="171" src="https://s2.ax1x.com/2020/02/22/3QY2VO.png" /><figcaption>公式</figcaption></figure><div class="highlight"><pre><span></span><span class="n">prediciton</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<h3>3.3 损失函数</h3>
+<h4>3.3.1 平方差函数</h4>
+<p>平方差函数是基于：“离差平方和”，它反映了x与其数学期望Ex的偏离程度。</p><p><strong>Prediction:</strong> $h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\cdots+\theta_nx_n =  X\theta$</p><p><strong>Parameters:</strong> $\theta_0,\theta_1,\cdots,\theta_n$ 也就是 $\theta^T=[\theta_0  \theta_1 \cdots \theta_n]$</p><p>**Cost Function: **$J(\theta)=\frac{1}{2m}  \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})^2$</p><p><strong>Goal:</strong> $J(\theta)min$</p><p><strong>Code</strong></p><p>依据公式：$J(\theta)=\frac{1}{2m}  \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})^2$</p><div class="highlight"><pre><span></span><span class="n">sqrErrors</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span><span class="w">		</span><span class="c">%squared errors</span><span class="w"></span>
+<span class="n">J</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">sqrErrors</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<h3>3.4 损失函数最小化</h3>
+<h4>3.4.1 梯度下降法</h4>
+<p><strong>求解步骤（完善）：</strong></p><ol>
+<li>选择一个损失函数$J(\theta)$</li>
+<li>初始化：$\theta=0$</li>
+<li>特征的缩放以及均值归一化</li>
+<li>选择一个学习速率$α$ ，画出 $J(\theta)$ — $iteraNum$ 的图像，找出最合适的学习速率</li>
+<li>开始迭代，令$\theta_j:=\theta_j-α\frac{\partial}{\partial\theta_j}J(\theta)$</li>
+<li>检查$\theta_j$是否趋于收敛（$\frac{\partial}{\partial \theta_j} J(\theta) \to 0$ 或 $\theta^j \to \theta^{j-1}$），若收敛则得到 $\theta$，反之重复步骤3</li>
+</ol>
+<p><strong>关于偏导：</strong></p><ol>
+<li>$\theta_0:=\theta_0-α \frac{1}{m} \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)}) $</li>
+<li>$\theta_j:=\theta_j-α \frac{1}{m} \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})\cdot x^{(i)}_j$</li>
+</ol>
+<p><strong>Code</strong></p><p>依据公式：$\theta_j:=\theta_j-α \frac{1}{m} \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})\cdot x^{(i)}_j$</p><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">num_iters</span><span class="w"></span>
+<span class="w">    </span><span class="c">% X补充了一列1，所以可以直接乘X&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="nb">alpha</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="o">&#39;*</span><span class="p">(</span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+<h4>3.4.2 正规方程法</h4>
+<p>采用数学中求解多项式函数的方法：</p><ol>
+<li>求每个参数的偏导</li>
+<li>偏导置零得极值点</li>
+<li>极值点中选择出最小值点</li>
+</ol>
+<p>基本思想如下：</p><figure style="flex: 91.7536534446764" ><img loading="lazy" width="879" height="479" src="https://s2.ax1x.com/2020/01/19/1CdGM4.png" /><figcaption>θ的举证表示</figcaption></figure><p><strong>Code</strong></p><p>依据公式： $\theta=(X^TX)^{-1}X^Ty$</p><div class="highlight"><pre><span></span><span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">			</span><span class="c">%pinv()返回矩阵伪逆阵</span><span class="w"></span>
+</pre></div>
+<p>对于极少数不可逆的矩阵$X^TX$，我们仍然用<code>pinv()</code>函数。因为该函数是“伪逆”的，他在运算过程中与真正的求逆函数<code>inv()</code>不同，会在一些步骤中有一点变动，但不影响结果。</p><p>矩阵不可逆的两个原因：</p><ol>
+<li>当矩阵的两个特征选取不恰当时，可能会导致$X^TX$不可逆的情况出现。例如特征”英尺“和”米“作为两个特征，但实际上两个特征线性相关，则矩阵一定会不可逆。</li>
+<li>样本数&lt;特征数时，可能会出现不可逆情况。此时就需要采用正则化等方法，使较少的样本仍然能得到有很多特征的参数。</li>
+</ol>
+<p>矩阵不可逆时，应先尝试排除冗余的特征。</p><h4>3.4.3 方法比较</h4>
+<table>
+<thead>
+<tr>
+  <th>梯度下降法</th>
+  <th>正规方程法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>需要通过多次调试，找到合适的学习速率α</td>
+  <td>不需要学习速率α</td>
+</tr>
+<tr>
+  <td>需要多次迭代</td>
+  <td>不需要迭代</td>
+</tr>
+<tr>
+  <td>特征的数量对算法速度影响不大</td>
+  <td>θ包含$(X^TX)^{-1}$，时间复杂度$O(n^3)$，故特征不宜太多</td>
+</tr>
+<tr>
+  <td></td>
+  <td>经验：特征数量&gt;1万时，速度将会有较大影响</td>
+</tr>
+</tbody>
+</table>
+<h3>3.5 特征选择</h3>
+<p>对于多个特征，例如房子的宽度和深度，可以设面积=宽度*深度，从而将特征减少。也即提醒，特征的选择应该遵循该特征是对结果有影响的。</p><h4>3.5.1 多项式回归</h4>
+<p>多项式回归使得我们可以采取线性回归的方法去拟合非常复杂甚至是非线性的函数。</p><p>如下图，将一元非线性多项式函数的n次方变量(n&gt;1)，作为一个新特征值，从而变换成多元线性多项式函数。但需要注意的是，此时需要对n次方的变量进行特征缩放操作。</p><figure style="flex: 92.02020202020202" ><img loading="lazy" width="911" height="495" src="https://s2.ax1x.com/2020/01/09/lWlTbt.png" /><figcaption>多项式替代非线性函数</figcaption></figure><h3>3.6 特征处理</h3>
+<h4>3.5.1 归一化</h4>
+<p>若多特征值问题中，不同特征值在相近范围中时，采用特征缩放可使梯度下降更快地收敛。</p><p>$x_i=\frac{x_i}{s_i}$  其中$s_i$是$x_i$的取值范围大小$|max-min|$</p><p>下图中，针对“房屋面积”和“房间数量”两个特征，其相去甚远，轮廓图如左侧所示，采用梯度下降时，往往需要很长时间才能曲折找到收敛的值。当我们将特征值的取值范围缩放到[0,1]中时，轮廓图呈近似圆形，故此时进行梯度下降，将会更加快捷。</p><figure style="flex: 88.9423076923077" ><img loading="lazy" width="925" height="520" src="https://s2.ax1x.com/2020/01/08/l2AuDJ.png" /><figcaption>特征缩放示意</figcaption></figure><p>实际中常缩放到[-1,1]中，但并非要求每个特征值都要缩放到该范围，只要在[-1,1] 的附近均可，例如[0,3] [-2,0.5]，本质只是将特征值范围的相差减小。同理，过小也需要放大。目前经验建议的范围是[-3,3] 至 [-1/3,1/3] 都无需缩放。</p><p><strong>均值归一化：</strong></p><p>将特征值的范围尽量关于0对称</p><p>$x_i=\frac{x_i-\mu_i}{s_i}$  其中$\mu_i$是$x_i$的平均值$\frac{\sum ^n _{i=1} {x_i}}{n}$</p><h4>3.4.2 标准化</h4>
+<p>将特征值转变为平均数为0，标准差为1的集合</p><p>$x_i=\frac{x_i-\mu_i}{\sigma}$ 其中$\sigma$是该特征集合的标准差</p><blockquote>
+<p>归一化和标准化的区别：</p><p>归一化是将样本的特征值转换到同一量纲下把数据映射到[0,1]或者[-1, 1]区间内，仅由变量的极值决定，因区间放缩法是归一化的一种。标准化是依照特征矩阵的列处理数据，其通过求z-score的方法，转换为标准正态分布，和整体样本分布相关，每个样本点都能对标准化产生影响。它们的相同点在于都能取消由于量纲不同引起的误差；都是一种线性变换，都是对向量X按照比例压缩再进行平移。</p></blockquote>
+<h4>3.4.3 调试</h4>
+<p><strong>梯度下降正常工作的标准：</strong> $J(\theta)$随着迭代次数的增加，单调递减，且趋于平缓。</p><p>画出 $J(\theta)$ — $iteraNum$ 的图像，下图为正常工作的图像。</p><figure style="flex: 91.48514851485149" ><img loading="lazy" width="924" height="505" src="https://s2.ax1x.com/2020/01/09/lWuayq.png" /><figcaption>正常工作的Gradient-Descent</figcaption></figure><p>下图为学习速率$α$不合适导致没有正常工作的图像。</p><figure style="flex: 90.38076152304609" ><img loading="lazy" width="902" height="499" src="https://s2.ax1x.com/2020/01/09/lWuWOx.png" /><figcaption>非正常工作的Gradient-Descent</figcaption></figure><ol>
+<li>如果$α$太小，则收敛速度太慢。</li>
+<li>如果$α$太大，则可能无法迭代出最小值。</li>
+</ol>
+<p>故学习速率$α$可以通过上述 $J(\theta)$ — $iteraNum$ 图，来判断梯度下降算法是否能正常进行。</p><h3>3.7 线性回归总结及Code</h3>
+<ol>
+<li>根据连锁店在城市的欢迎程度，判断盈利</li>
+<li>根据数据集中，房子面积、房间数，判断房子出售价格</li>
+</ol>
+<p><strong>单特征线性回归</strong></p><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="n">clc</span><span class="w"></span>
+
+<span class="s">inp_iterations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="s">&#39;Please input iterations: &#39;</span><span class="p">);</span><span class="w">	</span><span class="c">%迭代次数</span><span class="w"></span>
+<span class="n">inp_alpha</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="s">&#39;Please input alpha: &#39;</span><span class="p">);</span><span class="w">				</span><span class="c">%学习速率</span><span class="w"></span>
+
+<span class="c">%% ========== 读取数据 ==========</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nLoading dataset...\n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s">&#39;ex1data1.txt&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w">						</span><span class="c">%特征+结果数（列数）</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">						</span><span class="c">%样本数（行数）</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w">					</span><span class="c">%多特征的属性值矩阵X</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="n">n</span><span class="p">);</span><span class="w">						</span><span class="c">%结果向量</span><span class="w"></span>
+
+<span class="c">%% ========== 查看散点图（单特征） ==========</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nPlotting Data...\n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">;</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;rx&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MarkerSize&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w">			</span><span class="c">%大小为10的红色十字散点</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;description of x-axis&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;description of y-axis&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c">%kbhit();							%暂停</span><span class="w"></span>
+
+<span class="c">%% ========== 初始化 ==========</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nInitialing Variables...\n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">X</span><span class="p">];</span><span class="w">					</span><span class="c">%补充一列常数1</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">					</span><span class="c">%初始化theta为n维向量</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">iterations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">inp_iterations</span><span class="p">;</span><span class="w">						</span><span class="c">%迭代次数</span><span class="w"></span>
+<span class="nb">alpha</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">inp_alpha</span><span class="p">;</span><span class="w">							</span><span class="c">%学习速率</span><span class="w"></span>
+
+<span class="c">%% ========== 梯度下降法 ==========</span><span class="w"></span>
+<span class="p">[</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">J_history</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">gradientDescent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="nb">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">iterations</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nTheta computed from gradient descent: \n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39; %f \n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span><span class="w"></span>
+<span class="c">%kbhit();</span><span class="w"></span>
+
+<span class="c">%% ========== 画出线性回归得出的线性函数（单特征） ==========</span><span class="w"></span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">on</span><span class="p">;</span><span class="w">								</span><span class="c">%在离散图中画线</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;-&#39;</span><span class="p">);</span><span class="w">			</span><span class="c">%X的2~n列用-线画出</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Training data&#39;</span><span class="p">,</span><span class="s">&#39;Linear regression&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">hold</span><span class="w"> </span><span class="s">off</span><span class="p">;</span><span class="w"></span>
+
+<span class="c">%% ========== 学习速率-迭代次数关系图 ==========</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">;</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">J_history</span><span class="p">),</span><span class="w"> </span><span class="n">J_history</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;-b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Number of iterations&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Cost J&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%% ========== 梯度下降线性回归预测 ==========</span><span class="w"></span>
+<span class="c">%梯度下降法，需要对参数进行相应的特征处理</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1650</span><span class="p">];</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">x_pre</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">x_pre</span><span class="p">];</span><span class="w">		</span><span class="c">%补充1列</span><span class="w"></span>
+<span class="n">profit</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x_pre</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">theta</span><span class="p">;</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">([</span><span class="s">&#39;\nPredicted profit ... \n (using gradient descent):\n $%f\n&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">profit</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%% ========== 损失函数调试（单特征） ==========</span><span class="w"></span>
+<span class="n">checkJtheta</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%% ========== 正规方程法 ==========</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">normalEqn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nTheta computed from gradient descent: \n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39; %f \n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span><span class="w"></span>
+<span class="c">%kbhit();</span><span class="w"></span>
+
+<span class="c">%% ========== 正规方程线性回归预测 ==========</span><span class="w"></span>
+<span class="c">%正规方程法直接代入参数即可</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1650</span><span class="p">];</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">x_pre</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">x_pre</span><span class="p">];</span><span class="w"></span>
+<span class="n">profit</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x_pre</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">theta</span><span class="p">;</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">([</span><span class="s">&#39;\nPredicted profit ... \n (using normal equations):\n $%f\n&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">profit</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p><strong>多特征线性回归</strong></p><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="n">clc</span><span class="w"></span>
+
+<span class="s">inp_iterations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="s">&#39;Please input iterations: &#39;</span><span class="p">);</span><span class="w">	</span><span class="c">%迭代次数</span><span class="w"></span>
+<span class="n">inp_alpha</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="s">&#39;Please input alpha: &#39;</span><span class="p">);</span><span class="w">				</span><span class="c">%学习速率</span><span class="w"></span>
+
+<span class="c">%% ========== 读取数据 ==========</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nLoading dataset...\n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s">&#39;ex1data2.txt&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w">						</span><span class="c">%特征+结果数（列数）</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">						</span><span class="c">%样本数（行数）</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w">					</span><span class="c">%多特征的属性值矩阵X</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="n">n</span><span class="p">);</span><span class="w">						</span><span class="c">%结果向量</span><span class="w"></span>
+
+<span class="c">%% ========== 特征标准化（多特征） ==========</span><span class="w"></span>
+<span class="p">[</span><span class="n">X</span><span class="w"> </span><span class="n">mu</span><span class="w"> </span><span class="n">sigma</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">featureNormalize</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w">			</span><span class="c">%得到标准化的X以及均值和标准差</span><span class="w"></span>
+
+<span class="c">%% ========== 初始化 ==========</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nInitialing Variables...\n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">X</span><span class="p">];</span><span class="w">					</span><span class="c">%补充一列常数1</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">					</span><span class="c">%初始化theta为n维向量</span><span class="w"></span>
+<span class="n">iterations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">inp_iterations</span><span class="p">;</span><span class="w">						</span><span class="c">%迭代次数</span><span class="w"></span>
+<span class="nb">alpha</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">inp_alpha</span><span class="p">;</span><span class="w">							</span><span class="c">%学习速率</span><span class="w"></span>
+
+<span class="c">%% ========== 梯度下降法 ==========</span><span class="w"></span>
+<span class="p">[</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">J_history</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">gradientDescent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="nb">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">iterations</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nTheta computed from gradient descent: \n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39; %f \n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span><span class="w"></span>
+<span class="c">%kbhit();</span><span class="w"></span>
+
+<span class="c">%% ========== 梯度下降线性回归预测 ==========</span><span class="w"></span>
+<span class="c">%梯度下降法，预测时需要对参数进行相应的特征处理</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1650</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="n">x_pre_norm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">x_pre</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mu</span><span class="p">)</span><span class="o">./</span><span class="n">sigma</span><span class="p">;</span><span class="w">							</span><span class="c">%特征标准化</span><span class="w"></span>
+<span class="n">x_pre_norm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">x_pre_norm</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">x_pre_norm</span><span class="p">];</span><span class="w">		</span><span class="c">%补充1列</span><span class="w"></span>
+<span class="n">price</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x_pre_norm</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">theta</span><span class="p">;</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">([</span><span class="s">&#39;\nPredicted price ... \n (using gradient descent):\n $%f\n&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">price</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%% ========== 学习速率-迭代次数关系图 ==========</span><span class="w"></span>
+<span class="nb">figure</span><span class="p">;</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">J_history</span><span class="p">),</span><span class="w"> </span><span class="n">J_history</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;-b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Number of iterations&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Cost J&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">%% ========== 正规方程法 ==========</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w">					</span><span class="c">%消除特征标准化影响</span><span class="w"></span>
+<span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">X</span><span class="p">];</span><span class="w">					</span><span class="c">%补充一列常数1</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">normalEqn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nTheta computed from gradient descent: \n&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39; %f \n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span><span class="w"></span>
+<span class="c">%kbhit();</span><span class="w"></span>
+
+<span class="c">%% ========== 正规方程线性回归预测 ==========</span><span class="w"></span>
+<span class="c">%正规方程法直接代入参数即可</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1650</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="n">x_pre</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">x_pre</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">x_pre</span><span class="p">];</span><span class="w"></span>
+<span class="n">price</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x_pre</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">theta</span><span class="p">;</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">([</span><span class="s">&#39;\nPredicted price ... \n (using normal equations):\n $%f\n&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">price</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p><strong>损失函数</strong></p><p>依据公式：$J(\theta)=\frac{1}{2m}  \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})^2$</p><div class="highlight"><pre><span></span><span class="c">%该损失函数为平方差函数</span><span class="w"></span>
+<span class="k">function</span><span class="w"> </span>J<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">computeCost</span><span class="p">(</span>X, y, theta<span class="p">)</span><span class="w"></span>
+
+<span class="n">m</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span><span class="w">				</span><span class="c">% number of training examples</span><span class="w"></span>
+<span class="n">sqrErrors</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span><span class="w">		</span><span class="c">%squared errors</span><span class="w"></span>
+<span class="n">J</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">sqrErrors</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+<p><strong>特征标准化函数</strong></p><p>依据公式：$x_i=\frac{x_i-\mu_i}{\sigma}$</p><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[X_norm, mu, sigma] = featureNormalize</span><span class="p">(</span>X<span class="p">)</span><span class="w"></span>
+
+<span class="n">X_norm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">X</span><span class="p">;</span><span class="w"></span>
+<span class="n">mu</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">				</span><span class="c">%均值向量初始化</span><span class="w"></span>
+<span class="n">sigma</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">			</span><span class="c">%标准差向量初始化</span><span class="w"></span>
+
+<span class="n">mu</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w">    						</span><span class="c">%计算每个特征的均值</span><span class="w"></span>
+<span class="n">sigma</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">X</span><span class="p">);</span><span class="w">    						</span><span class="c">%计算每个特征的标准差</span><span class="w"></span>
+<span class="n">X_norm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mu</span><span class="p">)</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="n">sigma</span><span class="p">;</span><span class="w">    			</span><span class="c">%计算标准化后的特征矩阵</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+<p><strong>梯度下降函数</strong></p><p>依据公式：$\theta_j:=\theta_j-α \frac{1}{m} \sum ^m _{i=1} (h_θ(x^{(i)})-y^{(i)})\cdot x^{(i)}_j$</p><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[theta, J_history] = gradientDescent</span><span class="p">(</span>X, y, theta, alpha, num_iters<span class="p">)</span><span class="w"></span>
+
+<span class="c">% Initialize some useful values</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c">% number of training examples</span><span class="w"></span>
+<span class="n">J_history</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">num_iters</span><span class="w"></span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="nb">alpha</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="o">&#39;*</span><span class="p">(</span><span class="n">X</span><span class="o">*</span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">J_history</span><span class="p">(</span><span class="n">iter</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">computeCost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+<p><strong>正规方程函数</strong></p><p>依据公式： $\theta=(X^TX)^{-1}X^Ty$</p><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[theta]<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">normalEqn</span><span class="p">(</span>X, y<span class="p">)</span><span class="w"></span>
+
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">pinv</span><span class="p">(</span><span class="n">X</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">X</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">			</span><span class="c">%pinv()返回矩阵伪逆阵</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+<p><strong>3D函数&amp;轮廓图判断梯度下降性能函数（单特征）：</strong></p><div class="highlight"><pre><span></span><span class="c">%判断损失函数是否正常工作</span><span class="w"></span>
+<span class="k">function</span><span class="w"> </span><span class="nf">checkJtheta</span><span class="p">(</span>X, y, theta<span class="p">)</span><span class="w"></span>
+
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\nVisualizing J(theta_0, theta_1) ...\n&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">theta0_vals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w">			</span><span class="c">%theta0范围</span><span class="w"></span>
+<span class="n">theta1_vals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span><span class="w">				</span><span class="c">%theta1范围</span><span class="w"></span>
+<span class="n">J_vals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">theta0_vals</span><span class="p">),</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">theta1_vals</span><span class="p">));</span><span class="w">	</span><span class="c">%初始化J为0阵</span><span class="w"></span>
+
+<span class="c">% 计算不同θ范围内，J的值</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">theta0_vals</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">theta1_vals</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">theta0_vals</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span><span class="w"> </span><span class="n">theta1_vals</span><span class="p">(</span><span class="nb">j</span><span class="p">)];</span><span class="w"></span>
+<span class="w">      </span><span class="n">J_vals</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">computeCost</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">J_vals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">J_vals</span><span class="o">&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="c">% 曲面图</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">surf</span><span class="p">(</span><span class="n">theta0_vals</span><span class="p">,</span><span class="w"> </span><span class="n">theta1_vals</span><span class="p">,</span><span class="w"> </span><span class="n">J_vals</span><span class="p">);</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;\theta_0&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;\theta_1&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c">% 轮廓图</span><span class="w"></span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="c">% Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100</span><span class="w"></span>
+<span class="nb">contour</span><span class="p">(</span><span class="n">theta0_vals</span><span class="p">,</span><span class="w"> </span><span class="n">theta1_vals</span><span class="p">,</span><span class="w"> </span><span class="n">J_vals</span><span class="p">,</span><span class="w"> </span><span class="nb">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">))</span><span class="w"></span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;\theta_0&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;\theta_1&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">theta</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;rx&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MarkerSize&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+<hr />
+<h2>4 逻辑回归</h2>
+<h3>4.1 逻辑回归与线性回归关系</h3>
+<p>逻辑回归是分类问题，并非回归问题，但它是基于线性函数的。用来预测它属于某个分类的概率。</p><p>思考：我们之前学过线性回归，我们是否能通过线性回归解决问题呢？</p><p>如果按照线性回归的思路，我们可以通过人体内肿瘤的大小线性回归得到一个值，然后我们设置一个平均值或阈值，设为y。当线性回归出的值大于y则为恶性肿瘤，小于y则为良性肿瘤。于是，我们通过设置 <strong>平均值/阈值（决策边界）</strong> ，将线性回归问题转化为了分类问题。如下图：</p><figure style="flex: 111.19791666666667" ><img loading="lazy" width="427" height="192" src="https://s2.ax1x.com/2020/02/18/3FAsgJ.png" /><figcaption>用线性回归做分类问题</figcaption></figure><p>图中，0.5为阈值，斜线为线性回归的假设函数，当值小于阈值时，为良性，反之为恶性。</p><p>但这个做法存在一个问题，当出现离群值（异常值）时，线性回归会受到很大的影响，如下图：</p><figure style="flex: 145.43010752688173" ><img loading="lazy" width="541" height="186" src="https://s2.ax1x.com/2020/02/18/3FEWss.png" /><figcaption>线性回归出现离群值的情况</figcaption></figure><p>从上图我们可以了解到，通过线性回归拟合出函数再取阈值分类的方法不一定有效，因为线性函数是“直”的，若存在离群值则对函数影响非常大。所以我们按照以下步骤做些处理：</p><ol>
+<li>假设函数改用非线性函数</li>
+<li>去掉严重影响函数的离群值</li>
+<li>选定一个合适的阈值</li>
+</ol>
+<h3>4.2 假设函数的选择</h3>
+<p>首先，我们需要了解一个函数：<strong>Sigmoid Function (S形函数)</strong></p><ol>
+<li>$S(x)=\frac{1}{1+e^{-x}}$  ，它是一个非线性函数</li>
+<li>$S^{'}(x)=\frac{e^{-x}}{(1+e^{-x})^2}=S(x)(1-S(x))$ ，它易于求导，单调递增，且反函数同样单增</li>
+<li>$S(0)=0.5$</li>
+<li>$S(x)\in(0,1)$ 在x趋于无穷时，函数接近于平滑，故对超过一定范围的输入值不敏感</li>
+<li>$S(x)$能将$(-∞,+∞)$的输入映射到$(0,1)$，从而可以作为概率的形式。</li>
+<li>可做逻辑回归中的二分类、神经网络的激活函数</li>
+</ol>
+<figure style="flex: 288.9655172413793" ><img loading="lazy" width="838" height="145" src="https://s2.ax1x.com/2020/02/16/3pCpiq.png" /><figcaption>sigmoid函数图像</figcaption></figure><p>基于以上特点，我们在逻辑回归中便选择使用它作为假设函数：$h_\theta(x)=g(\theta^Tx)$</p><ol>
+<li>$z=\theta^Tx$</li>
+<li>$g(z)=\frac{1}{1+e^{−z}}$</li>
+<li>$h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta)$</li>
+<li>$P(y = 0 | x;\theta) + P(y = 1 | x ; \theta) = 1$</li>
+</ol>
+<blockquote>
+<p>关于为什么选择的是Sigmoid函数，请参考<a href="https://blog.csdn.net/qq_19645269/article/details/79551576">朱先生1994</a>的博客</p></blockquote>
+<h3>4.3 阈值的选择</h3>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="https://blog.imadamtang.cn/archives/Octave%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">Octave常用操作记录</a>
+        <p class="yue">Octave常用操作记录</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="https://blog.imadamtang.cn/archives/Selenium%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Selenium基本操作</a>
+        <p class="yue">Selenium 基本操作</p>
+    </div>
+
+</section>
+
+
+    
+        <script>
+            var initValine = function () {
+                new Valine({"enable": true, "el": "#vcomments", "appId": "whpJbIrUvboS1qOUGbAQLYMO-gzGzoHsz", "appKey": "XJmv8dJpt1RJltuKYpw5Io9P", "visitor": true, "recordIP": true});
+            }
+        </script>
+        <script defer src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js' onload="initValine()"></script>
+        <div id="vcomments"></div>
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">一博客</span>
+                    </section>
+                    <section>
+<!--                        <p class="copyright">-->
+<!--                            <span>Copyright © 2022 Adam</span>-->
+<!--&lt;!&ndash;                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>&ndash;&gt;-->
+<!--                        </p>-->
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/imadamtang" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2022-02-22T22:22+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/galileo-7c8cea54ab.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>
