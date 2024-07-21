@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/07006b793a73592fbad93cc3976f9713.json"
+            api: "https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/71b675cde489e2e427ce7179e4fdbb09.json"
         }
     </script>
     
@@ -89,7 +89,7 @@
 <li>任务调度为YARN</li>
 </ol>
 <p>Hive的作用主要是解释SQL语句，并转换为MapReduce程序或Spark程序，并提交到Hadoop集群执行。</p><h3>1.2 架构</h3>
-<figure style="flex: 68.71049304677624" ><img loading="lazy" width="2174" height="1582" src="https://s21.ax1x.com/2024/07/21/pk7FtJO.png" /><figcaption>image-20240721162035241</figcaption></figure><ol>
+<figure style="flex: 68.71049304677624" ><img loading="lazy" width="2174" height="1582" src="https://s21.ax1x.com/2024/07/21/pk7FtJO.png" /></figure><ol>
 <li>用户接口：包括 CLI、JDBC/ODBC、WEBUI。其中，CLI(command line interface)为 shell 命令行；Hive 中的 Thrift 服务器允许外部客户端通过网络与 Hive 进行交互，类似于 JDBC 或 ODBC 协议。WebGUI 是通过浏览器访问 Hive。</li>
 <li>元数据（Metastore）：用以存储 Hive 中的库、表、列、注释、分区、表属性等信息。默认是存储在 Hive 自带的 Derby 数据库中的，企业中一般会通过配置将其存储到 MySQL 中。</li>
 <li>Driver 驱动程序：Driver 驱动程序包括解析器（SQL Parser）、编译器（Physical Plan）、优化器（Query Optimize）、执行器（Execution）。解析器将 SQL 字符串转换成抽象语法树 AST，并对抽象语法树进行分析，比如判断字段是否存在、类型是否合理等，编译器负责将 AST 编译成逻辑执行计划，并由优化器对逻辑执行计划进行优化，最后由执行器将逻辑执行计划转换为屋里运行计划。</li>
@@ -109,7 +109,7 @@
 <span class="c1"># 会费一点时间，需要耐心等待</span>
 docker-compose up -d
 </pre></div>
-<p>运行完成后，执行 <code>docker-compose ps</code>命令查看正在运行的镜像</p><figure style="flex: 334.25925925925924" ><img loading="lazy" width="2166" height="324" src="https://s21.ax1x.com/2024/07/21/pk7E6Fx.png" /><figcaption>image-20240721182356570</figcaption></figure><p>看到有namenode、datanode、hive等，表示部署成功</p><h3>2.2 使用Hive</h3>
+<p>运行完成后，执行 <code>docker-compose ps</code>命令查看正在运行的镜像</p><figure style="flex: 334.25925925925924" ><img loading="lazy" width="2166" height="324" src="https://s21.ax1x.com/2024/07/21/pk7E6Fx.png" /></figure><p>看到有namenode、datanode、hive等，表示部署成功</p><h3>2.2 使用Hive</h3>
 <p>进入docker容器，该命令会在hive-server容器中执行bash命令，开始交互</p><div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> hive-server bash
 </pre></div>
 <blockquote>
@@ -123,12 +123,12 @@ docker-compose up -d
 </pre></div>
 <p>执行SQL语句查询表信息</p><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pokes</span><span class="p">;</span><span class="w"></span>
 </pre></div>
-<figure style="flex: 105.64853556485356" ><img loading="lazy" width="2020" height="956" src="https://s21.ax1x.com/2024/07/21/pk7VPhV.png" /><figcaption>image-20240721183448203</figcaption></figure><p>可以看到，hive已经安装完成。</p><h3>2.3 Metastore</h3>
-<p>通过上述操作，我们将 <code>kv1.txt</code> 文件通过hive提供的SQL接口，存放到了Hadoop集群的HDFS中，并以SQL表的形式对外呈现。<code>kv1.txt</code> 数据和 <code>pokes</code> 表的映射关系数据，称之为Hive的元数据Metadata。</p><p><strong>Metadata</strong></p><p>即元数据，包含Hive创建的database、table、表字段等元信息，该元数据包存在关系型数据库中。如Hive内置的Derby。但由于内置数据库的性能较差，我们一般都保存在第三方的数据库中，如MySQL、PostgreSQL等。</p><p><strong>Metastore服务</strong></p><p>即元数据服务，是Hive管理库表元数据的一个服务。由于我们元数据是存在MySQL等数据库中的，理论上要想获得元数据，需要获得MySQL等数据库的访问权限，但这样做太麻烦且不够统一，所以Hive通过一个服务将元数据暴露出去，这样上层的服务就可以基于结构化的库表信息来构建计算框架，这个服务就是Metastore服务。</p><figure style="flex: 87.01799485861183" ><img loading="lazy" width="1354" height="778" src="https://s21.ax1x.com/2024/07/21/pk7myuD.png" /><figcaption>image-20240721204635924</figcaption></figure><p><strong>参考</strong></p><ul>
+<figure style="flex: 105.64853556485356" ><img loading="lazy" width="2020" height="956" src="https://s21.ax1x.com/2024/07/21/pk7VPhV.png" /></figure><p>可以看到，hive已经安装完成。</p><h3>2.3 Metastore</h3>
+<p>通过上述操作，我们将 <code>kv1.txt</code> 文件通过hive提供的SQL接口，存放到了Hadoop集群的HDFS中，并以SQL表的形式对外呈现。<code>kv1.txt</code> 数据和 <code>pokes</code> 表的映射关系数据，称之为Hive的元数据Metadata。</p><p><strong>Metadata</strong></p><p>即元数据，包含Hive创建的database、table、表字段等元信息，该元数据包存在关系型数据库中。如Hive内置的Derby。但由于内置数据库的性能较差，我们一般都保存在第三方的数据库中，如MySQL、PostgreSQL等。</p><p><strong>Metastore服务</strong></p><p>即元数据服务，是Hive管理库表元数据的一个服务。由于我们元数据是存在MySQL等数据库中的，理论上要想获得元数据，需要获得MySQL等数据库的访问权限，但这样做太麻烦且不够统一，所以Hive通过一个服务将元数据暴露出去，这样上层的服务就可以基于结构化的库表信息来构建计算框架，这个服务就是Metastore服务。</p><figure style="flex: 87.01799485861183" ><img loading="lazy" width="1354" height="778" src="https://s21.ax1x.com/2024/07/21/pk7myuD.png" /></figure><p><strong>参考</strong></p><ul>
 <li><a href="https://github.com/big-data-europe/docker-hive">Docker-Hive Github</a></li>
 </ul>
 <h2>三、Hive客户端</h2>
-<p>Hive是一个CS架构，有Hive-Server的服务端，肯定还有一个Hive-Client的客户端。Hive从历史上，一共有两个客户端工具，分别是hive和beeline。前者已经过时，官方不推荐使用。后者是一个JDBC客户端，是官方推奖的Hive命令行工具，性能和安全性都比hive工具更好。</p><figure style="flex: 122.47191011235955" ><img loading="lazy" width="1308" height="534" src="https://s21.ax1x.com/2024/07/21/pk7m7Dg.png" /><figcaption>image-20240721205730521</figcaption></figure><p>使用beeline客户端连接</p><div class="highlight"><pre><span></span>beeline -u jdbc:hive2://localhost:10000
+<p>Hive是一个CS架构，有Hive-Server的服务端，肯定还有一个Hive-Client的客户端。Hive从历史上，一共有两个客户端工具，分别是hive和beeline。前者已经过时，官方不推荐使用。后者是一个JDBC客户端，是官方推奖的Hive命令行工具，性能和安全性都比hive工具更好。</p><figure style="flex: 122.47191011235955" ><img loading="lazy" width="1308" height="534" src="https://s21.ax1x.com/2024/07/21/pk7m7Dg.png" /></figure><p>使用beeline客户端连接</p><div class="highlight"><pre><span></span>beeline -u jdbc:hive2://localhost:10000
 </pre></div>
 
             </div>
