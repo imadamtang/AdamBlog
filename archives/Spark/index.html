@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Maverick,blog" />
+    <meta name="generator" content="Maverick 1.2.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="一博客 &raquo; RSS 2.0" href="https://blog.imadamtang.cn/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="一博客 &raquo; ATOM 1.0" href="https://blog.imadamtang.cn/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/galileo-8d8763e752.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/07006b793a73592fbad93cc3976f9713.json"
+        }
+    </script>
+    
+<title>Spark - 一博客</title>
+<meta name="author" content="Adam" />
+<meta name="description" content="一、基础" />
+<meta property="og:title" content="Spark - 一博客" />
+<meta property="og:description" content="一、基础" />
+<meta property="og:site_name" content="一博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.imadamtang.cn/archives/Spark/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2024-07-21T12:00:00+08.00" />
+<meta name="twitter:title" content="Spark - 一博客" />
+<meta name="twitter:description" content="一、基础" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="https://blog.imadamtang.cn/">一博客</a></h1>
+                        <p>唯有时间永恒</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="https://blog.imadamtang.cn/" target="_self">首页</a></li><span class="separator">·</span><li><a class="ga-highlight" href="https://blog.imadamtang.cn/archives/" target="_self">归档</a></li><span class="separator">·</span><li><a class="ga-highlight" href="https://blog.imadamtang.cn/about/" target="_self">关于</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">搜索</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">Spark</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>Adam</span>
+                <time>
+                    2024-07-21
+                </time>
+                
+                in <a no-style class="category" href="https://blog.imadamtang.cn/category/%E5%AD%A6%E4%B9%A0/">
+                    学习
+                </a>
+                
+                
+                <span class="leancloud_visitors" 
+                    id="/archives/Spark/" 
+                    data-flag-title="Spark"> · <i class="leancloud-visitors-count"></i> Views</span>
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>一、基础</h2>
+<h3>1.1 概念</h3>
+<p>Spark 是一种基于内存的快速、通用、可扩展的大数据分析计算引擎。可以理解为Hadoop生态中的计算组件，和MapReduce同属一个层面。</p><h3>1.2 特点</h3>
+<ul>
+<li>速度快</li>
+</ul>
+<blockquote>
+<p>Spark相对MapReduce更快的原因：</p><ol>
+<li>减少磁盘IO。Spark将计算结果保存到内存中，而非像MapReduce一样写到硬盘里。</li>
+<li>增加并行度。Spark中的任务是以线程的方式执行，且由于Spark将不同的环节抽象成Stage，故允许多个Stage并行执行。</li>
+<li>避免重复计算。Spark基于DAG（有向无环图）。</li>
+</ol>
+</blockquote>
+<ul>
+<li>易用性强</li>
+</ul>
+<blockquote>
+<p>Spark 支持 Java、Python 和 Scala 的 API，还支持超过 80 种高级算法，使用户可以快速构建不同的应用。</p></blockquote>
+<ul>
+<li>通用性强</li>
+</ul>
+<blockquote>
+<p>在 Spark 的基础上，Spark 还提供了包括 Spark SQL、Spark Streaming、MLib 及 GraphX 在内的多个工具库，可以在一个应用中无缝地使用这些工具库。其中，Spark SQL 提供了结构化的数据处理方式，Spark Streaming 主要针对流式处理任务，MLlib 提供了很多有用的机器学习算法库，GraphX 提供图形和图形并行化计算。</p></blockquote>
+<ul>
+<li>兼容性强</li>
+</ul>
+<blockquote>
+<p>Spark 可以非常方便地与其他的开源产品进行融合。比如，Spark 可以使用 Hadoop 的 YARN 和 Apache Mesos 作为它的资源管理和调度器，并且可以处理所有 Hadoop 支持的数据，包括 HDFS、HBase 等。</p></blockquote>
+<h3>1.3 组件</h3>
+<figure style="flex: 119.66911764705883" ><img loading="lazy" width="1302" height="544" src="https://s21.ax1x.com/2024/07/21/pk7iZgH.png" /><figcaption>image-20240721153633565</figcaption></figure><p>Spark 框架核心模块为Spark Core，在其之上有Spark SQL、 Spark Streaming、 Spark GraphX、Spark MLlib，新版还扩展出了新的流计算组件 Structured Streaming。</p><ul>
+<li>Spark Core</li>
+</ul>
+<blockquote>
+<p>实现了 Spark 的基本功能，包含任务调度、内存管理、错误恢复、与存储系统交互等模块。Spark Core 中还包含了对弹性分布式数据集(Resilient Distributed DataSet，简称 RDD)的 API 定义。</p></blockquote>
+<ul>
+<li>Spark SQL</li>
+</ul>
+<blockquote>
+<p>是 Spark 用来操作结构化数据的程序包。通过 Spark SQL，我们可以使用 SQL 或者 Apache Hive 版本的 SQL 方言(HQL)来查询数据。Spark SQL 支持多种数据源，比如 Hive 表、Parquet 以及 JSON 等。</p></blockquote>
+<ul>
+<li>Spark Streaming</li>
+</ul>
+<blockquote>
+<p>是 Spark 提供的对实时数据进行流式计算的组件。提供了用来操作数据流的 API，并且与 Spark Core 中的 RDD API 高度对应。</p></blockquote>
+<ul>
+<li>Spark MLlib</li>
+</ul>
+<blockquote>
+<p>提供常见的机器学习(ML)功能的程序库。包括分类、回归、聚类、协同过滤等，还提供了模型评估、数据导入等额外的支持功能。</p></blockquote>
+<ul>
+<li>Spark GraphX</li>
+</ul>
+<blockquote>
+<p>Spark 中用于图计算的 API，性能良好，拥有丰富的功能和运算符，能在海量数据上自如地运行复杂的图算法。</p></blockquote>
+<ul>
+<li>Structured Streaming</li>
+</ul>
+<blockquote>
+<p>Structured Streaming 是结构化流处理模块，将流式结构化数据封装到 DataFrame 中进行分析。是建立在 SparkSQL 引擎之上的可伸缩和高容错的流式处理引擎，可以像操作静态数据的批量计算一样来执行流式计算。当流式数据不断的到达的过程中 Spark SQL 的引擎会连续不断的执行计算并更新最终结果。简而言之，Structured Streaming 提供了快速、可伸缩、可容错、端到端精确的流处理。</p></blockquote>
+<h2>二、运行模式</h2>
+<h3>2.1 运行模式</h3>
+<p>Spark 的运行模式分三类：Local 模式、集群模式、云服务模式。其中集群模式又分为Standalone、Yarn 、Mesos 三种，云服务模式主要是 Kubernetes 模式。</p><ul>
+<li>Local 模式</li>
+</ul>
+<blockquote>
+<p>Local 模式也就是本地模式，将 Spark 应用程序中任务 Task 运行在一个本地 JVM Process 进程中，通常开发测试使用。</p></blockquote>
+<ul>
+<li>Standalone 模式</li>
+</ul>
+<blockquote>
+<p>搭建采用 Master + Worker 模式的集群，使用 Spark 内置的任务调度模块进行任务调度和资源管理。</p></blockquote>
+<ul>
+<li>Yarn 模式</li>
+</ul>
+<blockquote>
+<p>搭建采用 Master + Worker 模式的集群，借助 Yarn 进行任务调度和资源管理，Spark 只负责计算，生产环境用的最多。</p></blockquote>
+<ul>
+<li>Mesos模式</li>
+</ul>
+<blockquote>
+<p>运行在 Mesos 资源管理器框架之上，由 Mesos 负责资源管理，Spark 负责任务调度和计算。国内很少使用。</p></blockquote>
+<ul>
+<li>Kubernetes模式</li>
+</ul>
+<blockquote>
+<p>Spark 2.3 开始支持将 Spark 开发应用运行到 Kubernetes 上。</p></blockquote>
+<h3>2.2 部署模式</h3>
+<p>Spark Application 的部署模式分为 Client 和 Cluster 两种。两种模式的主要区别是 Driver 程序运行在哪个主机上，默认是 Client 模式，但是在工作中都采用 Cluster 模式，通过<code>--deploy-mode cluster</code>参数指定。</p><h2>三、相关术语</h2>
+<h3>3.1 集群</h3>
+<ul>
+<li>Cluster Manager：Spark 的集群管理者，主要负责对整个集群资源的管理与分配。Standalone 模式下为 Master，Yarn 模式下为 ResourceManager；</li>
+<li>Worker：Spark 的工作节点。在 Yarn 模式下由 NodeManager 替代。主要负责：<ul>
+<li>将自己的内存、CPU 等资源信息向 Cluster Manager 注册</li>
+<li>创建 Executor</li>
+<li>将资源和任务分配给 Executor</li>
+<li>同步资源信息、Executor 状态信息</li>
+</ul>
+</li>
+</ul>
+<h3>3.2 任务</h3>
+<ul>
+<li>Driver：Spark Application 驱动程序。它负责创建 SparkContext、创建 RDD，以及进行 RDD 的转化操作和行动操作代码的执行。如果你是用 Spark Shell，那么当你启动 Spark Shell 的时候，系统后台自启了一个 Spark 驱动器程序，就是在 Spark Shell 中预加载的一个叫作 sc 的 SparkContext 对象。如果驱动器程序终止，那么 Spark 应用也就结束了。主要负责：<ul>
+<li>把用户程序转为 Job；</li>
+<li>跟踪 Executor 的运行状况</li>
+<li>为执行器节点调度任务</li>
+<li>UI 展示应用运行状况</li>
+</ul>
+</li>
+<li>Executor：是运行在工作节点 Worker 上的进程，负责在 Spark 作业中运行任务，任务间相互独立。Spark 应用启动时，Executor 节点被同时启动，并且始终伴随着整个 Spark 应用的生命周期而存在。如果有 Executor 节点发生了故障或崩溃，Spark 应用也可以继续执行，会将出错节点上的任务调度到其他 Executor 上继续运行。主要负责：<ul>
+<li>运行组成 Spark 应用的任务，并将结果返回给驱动器进程；</li>
+<li>通过自身的块管理器（Block Manager）为用户程序中要求缓存的 RDD 提供内存式存储。</li>
+</ul>
+</li>
+<li>Application：指的是用户编写的 Spark 应用程序/代码，包含了 Driver 功能代码和分布在集群中多个节点上运行的 Executor 代码。初始化一个 SparkContext 即生成一个 Application；</li>
+<li>DAG：Directed Acyclic Graph 有向无环图，反映 RDD 之间的依赖关系和执行流程；</li>
+<li>Job：一个 Action 算子就会生成一个 Job；</li>
+<li>Stage：阶段，是作业的基本调度单位，遇到一个宽依赖则划分一个 Stage。同一个 Stage 中的 Task 可以并行执行，多个 Task 组成 TaskSet 任务集；</li>
+<li>Task：任务，运行在 Executor 上的工作单元，1 个 Task 计算 1 个分区，包括 pipline 上的一系列操作；</li>
+<li>Partition：数据分区，一个 RDD 可以划分为多个分区，Spark 根据 Partition 数量来确定 Task 的数量，一个 Partition 对应一个 Task。</li>
+</ul>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <a class="ga-highlight" href="https://blog.imadamtang.cn/archives/Hive/">Hive</a>
+        <p class="yue">一、基础</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="https://blog.imadamtang.cn/archives/Hadoop/">Hadoop</a>
+        <p class="yue">介绍</p>
+    </div>
+
+</section>
+
+
+    
+        <script>
+            var initValine = function () {
+                new Valine({"enable": true, "el": "#vcomments", "appId": "whpJbIrUvboS1qOUGbAQLYMO-gzGzoHsz", "appKey": "XJmv8dJpt1RJltuKYpw5Io9P", "visitor": true, "recordIP": true});
+            }
+        </script>
+        <script defer src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js' onload="initValine()"></script>
+        <div id="vcomments"></div>
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">一博客</span>
+                    </section>
+                    <section>
+<!--                        <p class="copyright">-->
+<!--                            <span>Copyright © 2024 Adam</span>-->
+<!--&lt;!&ndash;                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>&ndash;&gt;-->
+<!--                        </p>-->
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/imadamtang" target="_blank"><i class="gi gi-github"></i>GitHub</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2024-06-01T00:00+08:00"
+                    </script>
+                    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/galileo-7c8cea54ab.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/imadamtang/AdamBlog@main/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>

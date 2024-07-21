@@ -12,6 +12,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+    <loc>https://blog.imadamtang.cn/archives/Hive/</loc>
+    <lastmod>2024-07-21</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>https://blog.imadamtang.cn/archives/Spark/</loc>
+    <lastmod>2024-07-21</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
     <loc>https://blog.imadamtang.cn/archives/Hadoop/</loc>
     <lastmod>2024-07-10</lastmod>
     <changefreq>always</changefreq>
